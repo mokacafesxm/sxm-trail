@@ -18,7 +18,7 @@ export default function MapPage() {
 
     const map = new mapboxgl.Map({
       container: containerRef.current,
-      style: "mapbox://styles/mapbox/satellite-streets-v12",
+      style: "mapbox://styles/mapbox/outdoors-v12",
       center: SXM_CENTER,
       zoom: ZOOM,
       pitchWithRotate: false,
@@ -43,6 +43,14 @@ export default function MapPage() {
       }),
       "bottom-right"
     );
+
+    map.on("load", () => {
+      map.setFog({
+        color: "rgb(220, 215, 200)",
+        "high-color": "rgb(150, 180, 200)",
+        "horizon-blend": 0.1,
+      });
+    });
 
     mapRef.current = map;
 
